@@ -20,6 +20,7 @@
     }
     .cartitems{
         margin-bottom: 30px;
+        overflow-y:auto;
     }
     .total_price{
         & > div{
@@ -39,8 +40,15 @@
                     color: black;
                     font-weight: 500;
                 }
-            }
+            }    
             
+        }
+        .grand_total{
+            p{
+                font-weight: 600;
+                color:black;
+                font-size:22px;
+            }
         }
         hr{
             border: 1px dashed rgb(154, 154, 154);
@@ -53,5 +61,4 @@
     flex-direction: column;
     justify-content: space-between;
     height: 90%;
-    
 }

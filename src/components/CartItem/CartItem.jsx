@@ -1,19 +1,37 @@
-import croi1 from '../../assets/croissant1.jpg'
+import { useRecoilState } from 'recoil'
+import { cart } from '../../recoil/cart'
 import styles from './CartItem.module.scss'
-function CartItem({name,price,quantity}) {
+function CartItem({id,name,price,quantity,image}) {
+  const [cartItems,setCartItems]=useRecoilState(cart);
+  const index=cartItems.findIndex(item=>item.id===id)
+  const increment=()=>{
+    const newList=[...cartItems.slice(0,index),{...cartItems[index],quantity:quantity+1},...cartItems.slice(index+1)]
+    setCartItems(newList)
+  }
+  const decrement=()=>{
+    if(quantity===1){
+        const newList=[...cartItems]
+        newList.splice(index,1)
+        setCartItems(newList)
+    }
+    else{
+        const newList=[...cartItems.slice(0,index),{...cartItems[index],quantity:quantity-1},...cartItems.slice(index+1)]
+        setCartItems(newList)
+    }
+  }
   return (
     <div className={styles.cartitem}>
         <div className={styles.img_container}>
-            <img src={croi1} alt="" />
+            <img src={image} alt="" />
         </div>
         <div className={styles.item_content}>
-            <p>Smoke Tenderloin Slice Croissant</p>
+            <p>{name}</p>
             <div className={styles.price_quantity}>
                 <div>
-                    $10.01
+                    $ {price}
                 </div>
                 <div>
-                    <button>+</button>1<button>-</button>
+                    <button onClick={increment}>+</button>{quantity}<button onClick={decrement}>-</button>
                 </div>
             </div>
         </div>

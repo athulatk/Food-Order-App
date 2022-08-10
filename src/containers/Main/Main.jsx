@@ -1,38 +1,12 @@
-import { useEffect, useState } from 'react'
-import waffle from '../../assets/waffle.png'
-import icecream from '../../assets/ice-cream.png'
-import star from '../../assets/star.png'
-import croissant from '../../assets/croissant.png'
-import coffee from '../../assets/coffee.png'
+import {useRecoilValue} from 'recoil'
 import Category from '../../components/Category/Category'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Cards from '../../components/Cards/Cards'
 import filter from '../../assets/filter.svg'
 import styles from './Main.module.scss'
+import { categoryList } from '../../recoil/items'
 function Main() {
-    const [currentCategory,setCurrentCategory]=useState(0);
-    const [categories, setCategories] = useState([
-        {
-            name: 'Signature',
-            image:star
-        },
-        {
-            name: 'Croissant',
-            image:croissant
-        },
-        {
-            name: 'Waffle',
-            image:waffle
-        },
-        {
-            name: 'Coffee',
-            image:coffee
-        },
-        {
-            name: 'Ice Cream',
-            image:icecream
-        }
-    ])
+    const categories=useRecoilValue(categoryList)
     return (
         <div className={styles.main}>
             <div className={styles.header}>
@@ -47,7 +21,7 @@ function Main() {
             </div>
 
             <div className={styles.categories}>
-                {categories.map((item,index) => (<Category key={index} ind={index} name={item.name} active={item.active} image={item.image} setCurrentCategory={setCurrentCategory}/>))}
+                {categories.map((item,index) => (<Category key={index} ind={index} name={item.name} active={item.active} image={item.image}/>))}
             </div>
             <Cards/>
         </div>

@@ -4,7 +4,7 @@ import OrderDetails from './containers/OrderDetails/OrderDetails';
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       <Main/>
       <OrderDetails/>
     </div>
