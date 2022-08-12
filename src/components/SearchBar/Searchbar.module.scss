@@ -1,15 +1,17 @@
-.searchbar{
+.searchbar {
     display: flex;
     align-items: center;
     background-color: white;
-    padding:0.5em 1.2em;
+    padding: 0.5em 1.2em;
     border-radius: 12px;
-    img{
+
+    img {
         height: 20px;
         width: 20px;
         margin-right: 10px;
     }
-    input{
+
+    input {
         outline: none;
         margin: 0;
     }

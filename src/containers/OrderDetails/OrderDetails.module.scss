@@ -1,4 +1,4 @@
-.cart{
+.cart {
     background-color: white;
     position: fixed;
     right: 0;
@@ -7,58 +7,114 @@
     z-index: 20;
     width: 30%;
     padding: 2em 2em;
-    .header{
+    overflow-y: hidden;
+
+    @media screen and (max-width:1200px) {
+        display: none;
+        position: absolute;
+        overflow-y: scroll;
+
+        &.show {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 30px;
-        button{
+
+        button {
             width: 40px;
             height: 40px;
             border-radius: 10px;
         }
+
+        .settings {
+            display: block;
+
+            @media screen and (max-width:1200px) {
+                display: none;
+            }
+        }
+
+        .close {
+            display: none;
+
+            @media screen and (max-width:1200px) {
+                display: block;
+            }
+        }
     }
-    .cartitems{
-        margin-bottom: 30px;
-        overflow-y:auto;
+
+    .cartitems {
+        @media screen and (min-width:1200px) {
+            height: 50%;
+            overflow-y: auto;
+        }
+
+        @media screen and (max-width:1200px) {
+            height: auto;
+        }
+
     }
-    .total_price{
-        & > div{
+
+    .second_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 90%;
+
+        .pricediv {
+            position: sticky;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+
+            @media screen and (max-width:1200px) {
+                position: static;
+            }
+
+        }
+
+    }
+
+    .total_price {
+        &>div {
             background-color: rgb(243, 243, 243);
             padding: 1em;
             margin: 10px 0;
             border-radius: 10px;
-            & > div{
+
+            &>div {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin:10px 0;
-                p:first-child{
+                margin: 10px 0;
+
+                p:first-child {
                     color: rgb(99, 99, 99);
                 }
-                p:last-child{
+
+                p:last-child {
                     color: black;
                     font-weight: 500;
                 }
-            }    
-            
+            }
+
         }
-        .grand_total{
-            p{
+
+        .grand_total {
+            p {
                 font-weight: 600;
-                color:black;
-                font-size:22px;
+                color: black;
+                font-size: 22px;
             }
         }
-        hr{
+
+        hr {
             border: 1px dashed rgb(154, 154, 154);
         }
     }
-}
-
-.second_section{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 90%;
 }

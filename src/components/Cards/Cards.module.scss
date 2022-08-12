@@ -4,4 +4,8 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 25px 25px;
+    @media screen and (max-width:768px){
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
 }

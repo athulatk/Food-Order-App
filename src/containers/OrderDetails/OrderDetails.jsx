@@ -1,31 +1,28 @@
-import { useEffect, useState } from 'react'
 import settings from '../../assets/settings.svg'
 import styles from './OrderDetails.module.scss'
 import CartItem from '../../components/CartItem/CartItem'
 import Button from '../../components/Button/Button'
-import { useRecoilValue } from 'recoil'
-import { cart } from '../../recoil/cart'
+import close from '../../assets/close.svg'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { cart, noOfCartItems, showCart, TotalPrice } from '../../recoil/cart'
+
 function OrderDetails() {
   const cartItems = useRecoilValue(cart)
-  const [total, setTotal] = useState(0)
-  useEffect(() => {
-    let sum = 0
-    for (const item of cartItems) {
-      sum += item.price * item.quantity
-    }
-    setTotal(sum.toFixed(2))
-  }, [cartItems])
+  const [show, setShow] = useRecoilState(showCart)
+  const cartLength = useRecoilValue(noOfCartItems)
+  const total = useRecoilValue(TotalPrice)
   return (
-    <div className={styles.cart}>
+    <div className={`${styles.cart} ${show ? styles.show : ''}`}>
       <div className={styles.header}>
-        <h2>Current Order</h2>
-        <button><img src={settings} alt="" /></button>
+        <h2>Current Order ({cartLength})</h2>
+        <button className={styles.settings}><img src={settings} alt="" /></button>
+        <button className={styles.close} onClick={() => { setShow(!show) }}><img src={close} alt="" /></button>
       </div>
       <div className={styles.second_section}>
         {cartItems.length !== 0 ? <div className={styles.cartitems}>
           {cartItems.map((item) => (<CartItem key={item.id} id={item.id} name={item.name} price={item.price} image={item.image} quantity={item.quantity} />))}
         </div> : <h3>Cart is empty</h3>}
-        <div>
+        <div className={styles.pricediv}>
           <div className={styles.total_price}>
             <div>
               <div><p>Subtotal</p><p>$ {total}</p></div>
@@ -37,9 +34,8 @@ function OrderDetails() {
               <div><p>Total</p><p>$ {total}</p></div>
             </div>
           </div>
-          <Button text="Continue to Payment"/>
+          <Button text="Continue to Payment" />
         </div>
-
       </div>
     </div>
   )
