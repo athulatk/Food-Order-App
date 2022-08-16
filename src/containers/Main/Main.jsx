@@ -35,7 +35,7 @@ function Main() {
             </div>
             <Cards />
             {cartLength !== 0 && <div className={styles.totalprice}>
-                <button onClick={() => { setShow(true) }}>$ {total} - Continue to payment</button>
+                <button onClick={() => { setShow(true) }}>$ {total} - Continue</button>
             </div>}
         </div>
     )

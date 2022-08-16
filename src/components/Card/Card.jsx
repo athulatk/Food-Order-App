@@ -14,7 +14,6 @@ function Card({ id, name, description, price, pcs, image }) {
         description: description,
         price: price,
         image: image,
-        pcs: 2,
         quantity: 1
       }])
     }

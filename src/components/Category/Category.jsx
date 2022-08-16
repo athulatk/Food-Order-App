@@ -4,7 +4,7 @@ import { searchText } from '../../recoil/items'
 import styles from './Category.module.scss'
 function Category({ name, image }) {
   const [filter, setFilter] = useRecoilState(categoryType)
-  const [setSearch] = useRecoilState(searchText)
+  const [search,setSearch] = useRecoilState(searchText)
   const handleClick = () => {
     setFilter(name)
     setSearch('')
