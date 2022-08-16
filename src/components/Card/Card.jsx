@@ -5,9 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 function Card({ id, name, description, price, pcs, image }) {
   const [cartItems, setCartItems] = useRecoilState(cart)
   const addToCart = () => {
-    let cartItem = cartItems.find(item => item.id === id)
     const index = cartItems.findIndex(item => item.id === id)
-    if (cartItem === undefined) {
+    if (index===-1) {
       setCartItems((cartItems) => [...cartItems, {
         id: id,
         name: name,
@@ -18,7 +17,7 @@ function Card({ id, name, description, price, pcs, image }) {
       }])
     }
     else {
-      const newList = [...cartItems.slice(0, index), { ...cartItems[index], quantity: cartItem.quantity + 1 }, ...cartItems.slice(index + 1)]
+      const newList = [...cartItems.slice(0, index), { ...cartItems[index], quantity: cartItems[index].quantity + 1 }, ...cartItems.slice(index + 1)]
       setCartItems(newList)
 
     }
