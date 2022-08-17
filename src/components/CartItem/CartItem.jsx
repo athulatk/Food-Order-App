@@ -5,6 +5,7 @@ function CartItem({ id, name, price, quantity, image }) {
   const [cartItems, setCartItems] = useRecoilState(cart);
   const index = cartItems.findIndex(item => item.id === id)
   const increment = () => {
+    console.log(index)
     const newList = [...cartItems.slice(0, index), { ...cartItems[index], quantity: quantity + 1 }, ...cartItems.slice(index + 1)]
     setCartItems(newList)
   }

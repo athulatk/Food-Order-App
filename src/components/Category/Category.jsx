@@ -1,13 +1,11 @@
 import { useRecoilState } from 'recoil'
 import { categoryType } from '../../recoil/items'
-import { searchText } from '../../recoil/items'
 import styles from './Category.module.scss'
-function Category({ name, image }) {
+function Category({ name, image, setSearchText }) {
   const [filter, setFilter] = useRecoilState(categoryType)
-  const [search,setSearch] = useRecoilState(searchText)
   const handleClick = () => {
     setFilter(name)
-    setSearch('')
+    setSearchText('')
   }
   return (
     <div className={filter === name ? styles.category_selected : styles.category_unselected} onClick={handleClick}>

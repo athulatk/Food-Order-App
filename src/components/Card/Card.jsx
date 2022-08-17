@@ -19,7 +19,6 @@ function Card({ id, name, description, price, pcs, image }) {
     else {
       const newList = [...cartItems.slice(0, index), { ...cartItems[index], quantity: cartItems[index].quantity + 1 }, ...cartItems.slice(index + 1)]
       setCartItems(newList)
-
     }
   }
   return (
