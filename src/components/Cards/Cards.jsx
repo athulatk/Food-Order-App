@@ -3,8 +3,11 @@ import { listedItems } from '../../recoil/items';
 import Card from '../Card/Card'
 import styles from './Cards.module.scss'
 import { motion, AnimatePresence } from 'framer-motion'
+
 function Cards() {
+
     const foods = useRecoilValue(listedItems)
+
     return (
         <AnimatePresence>
             <motion.div initial={{ opacity: 0 }}
@@ -17,4 +20,5 @@ function Cards() {
         </AnimatePresence>
     )
 }
+
 export default Cards

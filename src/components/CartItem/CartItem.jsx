@@ -1,14 +1,20 @@
 import { useRecoilState } from 'recoil'
 import { cart } from '../../recoil/cart'
 import styles from './CartItem.module.scss'
-function CartItem({ id, name, price, quantity, image }) {
+import PropTypes from 'prop-types'
+
+function CartItem(props) {
+
+  const { id, name, price, quantity, image } = props
   const [cartItems, setCartItems] = useRecoilState(cart);
   const index = cartItems.findIndex(item => item.id === id)
+
   const increment = () => {
     console.log(index)
     const newList = [...cartItems.slice(0, index), { ...cartItems[index], quantity: quantity + 1 }, ...cartItems.slice(index + 1)]
     setCartItems(newList)
   }
+
   const decrement = () => {
     if (quantity === 1) {
       const newList = [...cartItems]
@@ -20,6 +26,7 @@ function CartItem({ id, name, price, quantity, image }) {
       setCartItems(newList)
     }
   }
+
   return (
     <div className={styles.cartitem}>
       <div className={styles.img_container}>
@@ -36,9 +43,24 @@ function CartItem({ id, name, price, quantity, image }) {
           </div>
         </div>
       </div>
-
     </div>
   )
+}
+
+CartItem.propTypes={
+  id: PropTypes.string,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string
+}
+
+CartItem.defaultProps = {
+  id: "",
+  name: "",
+  description: "",
+  price: 0,
+  image: ""
 }
 
 export default CartItem

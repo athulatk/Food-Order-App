@@ -8,6 +8,7 @@ import { categoryList, searchText } from '../../recoil/items'
 import cart from '../../assets/cart.svg'
 import { noOfCartItems, showCart, TotalPrice } from '../../recoil/cart'
 function Main() {
+
     const categories = useRecoilValue(categoryList)
     const [show, setShow] = useRecoilState(showCart)
     const [searchtext, setSearchText] = useRecoilState(searchText)
@@ -17,6 +18,7 @@ function Main() {
     const showOrderDetails = () => {
         setShow(!show);
     }
+
     return (
         <div className={styles.main}>
             <div className={styles.header}>
@@ -25,14 +27,14 @@ function Main() {
                     <p>Discover whatever you need easily</p>
                 </div>
                 <div>
-                    <SearchBar searchtext={searchtext} setSearchText={setSearchText}/>
+                    <SearchBar searchtext={searchtext} setSearchText={setSearchText} />
                     <button className={styles.filter}><img src={filter} alt="" /></button>
                     <button className={styles.cartimg} onClick={showOrderDetails}><img src={cart} alt="" /><span>{cartLength}</span></button>
                 </div>
             </div>
 
             <div className={styles.categories}>
-                {categories.map((item, index) => (<Category key={index} name={item.name} image={item.image} setSearchText={setSearchText}/>))}
+                {categories.map((item, index) => (<Category key={index} name={item.name} image={item.image} setSearchText={setSearchText} />))}
             </div>
             <Cards />
             {cartLength !== 0 && <div className={styles.totalprice}>
@@ -41,4 +43,5 @@ function Main() {
         </div>
     )
 }
+
 export default Main

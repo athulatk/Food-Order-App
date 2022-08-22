@@ -7,10 +7,12 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { cart, noOfCartItems, showCart, TotalPrice } from '../../recoil/cart'
 
 function OrderDetails() {
+
   const cartItems = useRecoilValue(cart)
   const [show, setShow] = useRecoilState(showCart)
   const cartLength = useRecoilValue(noOfCartItems)
   const total = useRecoilValue(TotalPrice)
+  
   return (
     <div className={`${styles.cart} ${show ? styles.show : ''}`}>
       <div className={styles.header}>
@@ -34,7 +36,7 @@ function OrderDetails() {
               <div><p>Total</p><p>$ {total}</p></div>
             </div>
           </div>
-          <Button text="Continue to Payment" />
+          <Button label="Continue to Payment" />
         </div>
       </div>
     </div>

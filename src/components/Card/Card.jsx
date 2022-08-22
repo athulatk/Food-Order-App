@@ -2,11 +2,16 @@ import styles from './Card.module.scss'
 import { useRecoilState } from 'recoil'
 import { cart } from '../../recoil/cart'
 import { AnimatePresence, motion } from 'framer-motion'
-function Card({ id, name, description, price, pcs, image }) {
+import PropTypes from 'prop-types'
+
+function Card(props) {
+
+  const { id, name, description, price, pcs, image } = props
   const [cartItems, setCartItems] = useRecoilState(cart)
+
   const addToCart = () => {
     const index = cartItems.findIndex(item => item.id === id)
-    if (index===-1) {
+    if (index === -1) {
       setCartItems((cartItems) => [...cartItems, {
         id: id,
         name: name,
@@ -21,6 +26,7 @@ function Card({ id, name, description, price, pcs, image }) {
       setCartItems(newList)
     }
   }
+
   return (
     <AnimatePresence>
       <motion.div layout initial={{ opacity: 0 }}
@@ -42,6 +48,24 @@ function Card({ id, name, description, price, pcs, image }) {
       </motion.div>
     </AnimatePresence>
   )
+}
+
+Card.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  price: PropTypes.number,
+  pcs: PropTypes.number,
+  image: PropTypes.string
+}
+
+Card.defaultProps = {
+  id: "",
+  name: "",
+  description: "",
+  price: 0,
+  pcs: 0,
+  image: ""
 }
 
 export default Card
