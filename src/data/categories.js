@@ -1,27 +1,22 @@
-import waffle from '../assets/waffle.png'
-import icecream from '../assets/ice-cream.png'
-import star from '../assets/star.png'
-import croissant from '../assets/croissant.png'
-import coffee from '../assets/coffee.png'
 export const categories = [
     {
         name: 'Signature',
-        image: star
+        image: '/assets/star.png'
     },
     {
         name: 'Croissant',
-        image: croissant
+        image: '/assets/croissant.png'
     },
     {
         name: 'Waffle',
-        image: waffle
+        image: '/assets/waffle.png'
     },
     {
         name: 'Coffee',
-        image: coffee
+        image: '/assets/coffee.png'
     },
     {
         name: 'Ice Cream',
-        image: icecream
+        image: '/assets/ice-cream.png'
     }
 ]

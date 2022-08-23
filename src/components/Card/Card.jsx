@@ -1,15 +1,23 @@
+import React from 'react'
 import styles from './Card.module.scss'
 import { useRecoilState } from 'recoil'
 import { cart } from '../../recoil/cart'
 import { AnimatePresence, motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 
+
 function Card(props) {
 
-  const { id, name, description, price, pcs, image } = props
+  const { id, name, description, price, pcs, image, setModalCardId, setShowModal} = props
   const [cartItems, setCartItems] = useRecoilState(cart)
 
-  const addToCart = () => {
+  const displayModal = () => {
+    setModalCardId(id);
+    setShowModal(true)
+  }
+
+  const addToCart = (e) => {
+    e.stopPropagation()
     const index = cartItems.findIndex(item => item.id === id)
     if (index === -1) {
       setCartItems((cartItems) => [...cartItems, {
@@ -31,7 +39,8 @@ function Card(props) {
     <AnimatePresence>
       <motion.div layout initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }} className={styles.card}>
+        exit={{ opacity: 0 }} className={styles.card__outer} onClick={displayModal}>
+      <div  className={styles.card}>
         <div className={styles.card_image_container}>
           <div className={styles.cart} onClick={addToCart}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -45,6 +54,7 @@ function Card(props) {
           <p>{description}</p>
           <p><span>$ {price}</span><span>/ {pcs} pcs</span></p>
         </div>
+      </div>
       </motion.div>
     </AnimatePresence>
   )
@@ -56,16 +66,21 @@ Card.propTypes = {
   description: PropTypes.string,
   price: PropTypes.number,
   pcs: PropTypes.number,
-  image: PropTypes.string
+  image: PropTypes.string,
+  setModalCardId: PropTypes.func,
+  setShowModal: PropTypes.func
+  
 }
 
 Card.defaultProps = {
-  id: "",
   name: "",
   description: "",
   price: 0,
   pcs: 0,
-  image: ""
+  image: "",
+  setModalCardId: ()=>{},
+  setShowModal: ()=>{}
+  
 }
 
 export default Card

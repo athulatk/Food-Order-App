@@ -1,8 +1,7 @@
-import settings from '../../assets/settings.svg'
+import React from 'react'
 import styles from './OrderDetails.module.scss'
 import CartItem from '../../components/CartItem/CartItem'
 import Button from '../../components/Button/Button'
-import close from '../../assets/close.svg'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { cart, noOfCartItems, showCart, TotalPrice } from '../../recoil/cart'
 
@@ -17,8 +16,8 @@ function OrderDetails() {
     <div className={`${styles.cart} ${show ? styles.show : ''}`}>
       <div className={styles.header}>
         <h2>Current Order ({cartLength})</h2>
-        <button className={styles.settings}><img src={settings} alt="" /></button>
-        <button className={styles.close} onClick={() => { setShow(!show) }}><img src={close} alt="" /></button>
+        <button className={styles.settings}><img src='/assets/settings.svg' alt="" /></button>
+        <button className={styles.close} onClick={() => { setShow(!show) }}><img src='/assets/close.svg' alt="" /></button>
       </div>
       <div className={styles.second_section}>
         {cartItems.length !== 0 ? <div className={styles.cartitems}>

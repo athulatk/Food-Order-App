@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRecoilState } from 'recoil'
 import { cart } from '../../recoil/cart'
 import styles from './CartItem.module.scss'
@@ -52,6 +53,7 @@ CartItem.propTypes={
   name: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
+  quantity:PropTypes.number,
   image: PropTypes.string
 }
 
@@ -60,6 +62,7 @@ CartItem.defaultProps = {
   name: "",
   description: "",
   price: 0,
+  quantity:0,
   image: ""
 }
 

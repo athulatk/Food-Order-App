@@ -1,12 +1,12 @@
+import React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import Category from '../../components/Category/Category'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import Cards from '../../components/Cards/Cards'
-import filter from '../../assets/filter.svg'
 import styles from './Main.module.scss'
 import { categoryList, searchText } from '../../recoil/items'
-import cart from '../../assets/cart.svg'
 import { noOfCartItems, showCart, TotalPrice } from '../../recoil/cart'
+
 function Main() {
 
     const categories = useRecoilValue(categoryList)
@@ -28,8 +28,8 @@ function Main() {
                 </div>
                 <div>
                     <SearchBar searchtext={searchtext} setSearchText={setSearchText} />
-                    <button className={styles.filter}><img src={filter} alt="" /></button>
-                    <button className={styles.cartimg} onClick={showOrderDetails}><img src={cart} alt="" /><span>{cartLength}</span></button>
+                    <button className={styles.filter}><img src='/assets/filter.svg' alt="" /></button>
+                    <button className={styles.cartimg} onClick={showOrderDetails}><img src='assets/cart.svg' alt="" /><span>{cartLength}</span></button>
                 </div>
             </div>
 
@@ -40,6 +40,7 @@ function Main() {
             {cartLength !== 0 && <div className={styles.totalprice}>
                 <button onClick={() => { setShow(true) }}>$ {total} - Continue</button>
             </div>}
+            
         </div>
     )
 }

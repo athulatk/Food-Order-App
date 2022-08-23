@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRecoilState } from 'recoil'
 import { categoryType } from '../../recoil/items'
 import styles from './Category.module.scss'

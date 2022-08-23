@@ -1,4 +1,4 @@
-import search from '../../assets/search.svg'
+import React from 'react'
 import styles from './Searchbar.module.scss'
 import PropTypes from 'prop-types'
 
@@ -8,7 +8,7 @@ function SearchBar(props) {
 
     return (
         <div className={styles.searchbar}>
-            <img src={search} alt="" /><input type="text" placeholder="Search product..." value={searchtext} onChange={(e) => { setSearchText(e.target.value) }} />
+            <img src='assets/search.svg' alt="" /><input type="text" placeholder="Search product..." value={searchtext} onChange={(e) => { setSearchText(e.target.value) }} />
         </div>
     )
 }
